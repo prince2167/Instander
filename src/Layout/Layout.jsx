@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <div className="flex">
+      <div className="flex justify-between">
         <Sidebar />
         <main>
           <Outlet />
