@@ -4,4 +4,5 @@ import Login from "./Authentication/Login";
 import Signup from "./Authentication/Signup";
 import Searchbar from "./Suggestionbar/Searchbar";
 import SuggestionAccounts from "./Suggestionbar/SuggestionAccounts";
-export { Navbar, Sidebar, Login, Signup, Searchbar, SuggestionAccounts };
+import CreatePsot from "./CreatePost/CreatePsot";
+export { Navbar, Sidebar, Login, Signup, Searchbar, SuggestionAccounts,CreatePsot};
