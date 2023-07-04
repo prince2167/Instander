@@ -1,5 +1,5 @@
 import { initialState, postReducer } from "../reducer/PostReducer";
-import axios from "axios";
+import { getAllPostsService } from "../services/postServices";
 import {
   createContext,
   useContext,
@@ -12,18 +12,22 @@ const PostContext = createContext();
 
 const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialState);
-  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   const getPosts = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const response = await axios.get("api/posts");
-      setPosts(response.data);
+      const {
+        status,
+        data: { posts },
+      } = await getAllPostsService();
+      if (status === 200) {
+        dispatch({ type: "GET_ALL_POSTS", payload: posts });
+      }
       setIsLoading(false);
     } catch (error) {
-      setError(error.message);
+      setError(error);
       setIsLoading(false);
     }
   };
@@ -32,7 +36,7 @@ const PostProvider = ({ children }) => {
     getPosts();
   }, []);
   return (
-    <PostContext.Provider value={{ state, dispatch, posts, isLoading, error }}>
+    <PostContext.Provider value={{ state, dispatch, isLoading, error }}>
       {children}
     </PostContext.Provider>
   );
