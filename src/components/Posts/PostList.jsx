@@ -1,8 +1,9 @@
 import { PostCard } from "../index";
 
 const PostList = ({ posts }) => {
+  
   return (
-    <div>{posts.length && posts.map((post) => <PostCard post={post} />)}</div>
+    <div className="flex flex-wrap gap-4">{posts.length && posts.map((post) => <PostCard post={post} key={post.id} />)}</div>
   );
 };
 
