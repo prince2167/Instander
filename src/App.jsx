@@ -6,8 +6,9 @@ import {
   Home,
   LikedPost,
   Profile,
-  LandingPage,
   NotFound,
+  Login,
+  Signup,
 } from "./pages/index";
 import "./App.css";
 
@@ -22,8 +23,8 @@ function App() {
           <Route path="/likedPost" element={<LikedPost />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
-
-        <Route path="/landingPage" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
