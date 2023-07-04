@@ -1,11 +1,24 @@
 import { ShimmerPostCard } from "../ShimmerCard/ShimmerPostCard";
-import { CreatePsot } from "../components/index";
-
+import { CreatePost, PostList } from "../components/index";
+import { useAuth } from "../contexts/auth-context";
+import { usePosts } from "../contexts/post-context";
 const Home = () => {
+  const { isLoading, error, state } = usePosts();
+  const { currentUser } = useAuth();
+  const { posts } = state;
+  const homePosts = posts.filter(
+    (post) =>
+      post.username === currentUser.username ||
+      currentUser?.following.find(
+        (followingUser) => followingUser.username === post.username
+      )
+  );
+
+  if (isLoading) return <ShimmerPostCard />;
   return (
     <div className="w-700">
-      <CreatePsot />
-      <ShimmerPostCard />
+      <CreatePost />
+      {isLoading ? <ShimmerPostCard /> : <PostList posts={homePosts} />}
     </div>
   );
 };
