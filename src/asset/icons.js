@@ -1,8 +1,8 @@
 import {
   AiOutlineHome,
-  AiOutlineHeart,
-  AiFillHeart,
   AiOutlineSearch,
+  AiOutlineLike,
+  AiFillLike,
 } from "react-icons/ai";
 import {
   BsBookmark,
@@ -14,13 +14,12 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { RiRocketLine } from "react-icons/ri";
 import { CgProfile, CgAddR } from "react-icons/cg";
 import { GoComment } from "react-icons/go";
-import { MdOutlineCancel } from "react-icons/md";
+import { MdOutlineCancel, MdSend } from "react-icons/md";
 import { BiImageAdd } from "react-icons/bi";
+import { SlOptionsVertical } from "react-icons/sl";
 
 export {
   AiOutlineHome,
-  AiOutlineHeart,
-  AiFillHeart,
   BsBookmark,
   RiRocketLine,
   BsFillBookmarkFill,
@@ -33,4 +32,8 @@ export {
   MdOutlineCancel,
   BiImageAdd,
   BsEmojiSmile,
+  SlOptionsVertical,
+  AiOutlineLike,
+  AiFillLike,
+  MdSend,
 };
