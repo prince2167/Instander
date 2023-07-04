@@ -1,5 +1,26 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/auth-context";
+import { toast } from "react-hot-toast";
 const SignupForm = () => {
+  const { signupHandler } = useAuth();
+
+  const [userDetails, setUserDetails] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const signupSubmitHandler = (event) => {
+    event.preventDefault();
+    if (userDetails.password === userDetails.confirmPassword) {
+      signupHandler(userDetails);
+    } else {
+      toast.error("Please fill this form correctly");
+    }
+  };
   return (
     <div className="max-w-md w-full p-6 shadow-xl hover:shadow-2xl border-2 sm:0">
       <div className="flex items-center justify-center gap-4 mb-4">
@@ -13,14 +34,24 @@ const SignupForm = () => {
         </h1>
       </div>
 
-      <form className=" flex gap-3 flex-col">
-        <div className="flex justify-between">
+      <form
+        className=" flex gap-3 flex-col items-center"
+        onSubmit={signupSubmitHandler}
+      >
+        <div className="flex justify-between flex-wrap w-full">
           <div htmlFor="first-name" className="flex  flex-col gap-1">
             <label>First Name:</label>
             <input
               required
               type="text"
               id="first-name"
+              value={userDetails.firstName}
+              onChange={(event) =>
+                setUserDetails({
+                  ...userDetails,
+                  firstName: event.target.value,
+                })
+              }
               className="block w-full p-2 sm:text-sm border border-black
              outline-orange rounded-md"
             />
@@ -32,42 +63,58 @@ const SignupForm = () => {
               required
               type="text"
               id="last-name"
+              value={userDetails.lastName}
+              onChange={(event) =>
+                setUserDetails({ ...userDetails, lastName: event.target.value })
+              }
               className="block w-full p-2 sm:text-sm border border-black
              outline-orange rounded-md"
             />
           </div>
         </div>
 
-        <div className="flex  flex-col gap-1">
+        <div className="flex  flex-col gap-1 w-full">
           <label htmlFor="email">Email:</label>
           <input
             required
             type="email"
             id="email"
+            value={userDetails.email}
+            onChange={(event) =>
+              setUserDetails({ ...userDetails, email: event.target.value })
+            }
             className="block w-full p-2 sm:text-sm border border-black
              outline-orange rounded-md"
           />
         </div>
 
-        <div className="flex  flex-col gap-1">
+        <div className="flex  flex-col gap-1 w-full">
           <label htmlFor="username">Username:</label>
           <input
             required
             type="text"
             id="username"
+            value={userDetails.username}
+            onChange={(event) =>
+              setUserDetails({ ...userDetails, username: event.target.value })
+            }
             className="block w-full p-2 sm:text-sm border border-black
              outline-orange rounded-md"
           />
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between flex-wrap w-full">
           <div className="flex  flex-col gap-1">
             <label htmlFor="password">Password:</label>
             <input
               required
               type="password"
               id="password"
-              class="block w-full p-2 sm:text-sm border border-black
+              value={userDetails.password}
+              onChange={(event) =>
+                setUserDetails({ ...userDetails, password: event.target.value })
+              }
+              className="block w-full p-2 sm:text-sm border border-black
              outline-orange rounded-md"
             />
           </div>
@@ -78,17 +125,27 @@ const SignupForm = () => {
               required
               type="password"
               id="confirm-password"
-              class="block w-full p-2 sm:text-sm border border-black
+              value={userDetails.confirmPassword}
+              onChange={(event) =>
+                setUserDetails({
+                  ...userDetails,
+                  confirmPassword: event.target.value,
+                })
+              }
+              className="block w-full p-2 sm:text-sm border border-black
              outline-orange rounded-md"
             />
           </div>
         </div>
 
-        <button  type="submit" className=" bg-orange text-lg text-white py-2 rounded-md my-6">
+        <button
+          type="submit"
+          className=" bg-orange text-lg text-white py-2 rounded-md my-6 w-full"
+        >
           Signup
         </button>
 
-        <span className="text-center">
+        <span className="text-center w-full">
           Already have an account?{" "}
           <Link to="/login" className="text-orange">
             Log in
