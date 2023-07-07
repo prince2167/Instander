@@ -16,6 +16,7 @@ const PostCard = ({ post }) => {
   const { users } = userState;
   const { currentUser } = useAuth();
   const [showOption, setShowOption] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const postUser = users?.find((user) => user.username === post.username);
   const isOwnedByUser = post?.username === postUser?.username;
@@ -101,12 +102,16 @@ const PostCard = ({ post }) => {
             <AiOutlineLike size={28} className="cursor-pointer" />
             <span className=" text-lg">{likes.likeCount}</span>
           </div>
-          <GoComment size={26} className="mt-3 cursor-pointer" />
+          <GoComment
+            size={26}
+            className="mt-3 cursor-pointer"
+            onClick={() => setShowComments(!showComments)}
+          />
         </div>
         <BsBookmark size={25} className="mt-3 cursor-pointer" />
       </div>
 
-      <Comments post={post} />
+      {showComments && <Comments post={post} />}
     </div>
   );
 };

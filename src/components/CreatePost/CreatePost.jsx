@@ -20,7 +20,7 @@ const CreatePsot = () => {
 
   const isPostButtonDisabled = postContent.trim() === "";
   return (
-    <form className="w-full mt-5 py-4 px-6 border rounded-lg shadow-lg h-full">
+    <form className="w-full  border-gray-300  mt-5 py-4 px-6 border rounded-lg shadow-lg h-full">
       <div className="flex gap-4">
         <img
           src="https://res.cloudinary.com/drre76xpz/image/upload/v1687251189/GettyImages-1408550650-766cd614126049f38f5bd460f823587f_ifc2t3_bgv8v9.webp"
