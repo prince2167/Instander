@@ -20,20 +20,20 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "Aarohi",
+        username: "aarohii",
         avatarURL:
           "https://res.cloudinary.com/drre76xpz/image/upload/v1687246802/photo-1494790108377-be9c29b29330_tqxd5y_hkfljz_l1sks8.jpg",
         text: "I love the rain. It's my favorite weather.",
       },
       {
         _id: uuid(),
-        username: "John Doe",
+        username: "jenny_anderson",
         avatarURL:
           "https://res.cloudinary.com/drre76xpz/image/upload/v1687247119/photo-1615109398623-88346a601842_uo9khv_ha61mb.jpg",
         text: "There is no better smell than earth after a heavy rain.",
       },
     ],
-    username: "me_princesingh", 
+    username: "me_princesingh",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -57,7 +57,7 @@ export const posts = [
         text: "Happy journey",
       },
     ],
-    username: "aarohi",
+    username: "aarohii",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -174,7 +174,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "aarohii",
+        username: "aarohiii",
         avatarURL:
           "https://res.cloudinary.com/drre76xpz/image/upload/v1687247119/photo-1615109398623-88346a601842_uo9khv_ha61mb.jpg",
         text: "Conferences are a great way to gain new insights. Which conference was it?",
