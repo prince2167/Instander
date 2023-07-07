@@ -14,7 +14,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { RiRocketLine } from "react-icons/ri";
 import { CgProfile, CgAddR } from "react-icons/cg";
 import { GoComment } from "react-icons/go";
-import { MdOutlineCancel, MdSend } from "react-icons/md";
+import { MdOutlineCancel, MdSend, MdOutlineTune } from "react-icons/md";
 import { BiImageAdd } from "react-icons/bi";
 import { SlOptionsVertical } from "react-icons/sl";
 
@@ -36,4 +36,5 @@ export {
   AiOutlineLike,
   AiFillLike,
   MdSend,
+  MdOutlineTune,
 };
