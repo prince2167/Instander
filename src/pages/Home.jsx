@@ -1,5 +1,5 @@
 import { ShimmerPostCard } from "../ShimmerCard/ShimmerPostCard";
-import { CreatePost, PostList } from "../components/index";
+import { CreatePost, PostList, Filter } from "../components/index";
 import { useAuth } from "../contexts/auth-context";
 import { usePosts } from "../contexts/post-context";
 const Home = () => {
@@ -18,7 +18,8 @@ const Home = () => {
   return (
     <div className="w-700">
       <CreatePost />
-      {isLoading ? <ShimmerPostCard /> : <PostList posts={homePosts} />}
+      <Filter />
+      <PostList posts={homePosts} />
     </div>
   );
 };
