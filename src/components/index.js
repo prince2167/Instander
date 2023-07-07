@@ -9,6 +9,7 @@ import PostList from "./Posts/PostList";
 import PostCard from "./Posts/PostCard";
 import Comments from "./Comments/Comments";
 import CommentItem from "./Comments/CommentItem";
+import Filter from "./Filter/Filter";
 export {
   Navbar,
   Sidebar,
@@ -21,4 +22,5 @@ export {
   PostCard,
   Comments,
   CommentItem,
+  Filter,
 };
