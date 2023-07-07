@@ -12,14 +12,57 @@ const CommentItem = ({ comment }) => {
     (user) => user.username === comment.username
   );
 
-  console.log("ss", commentedUser?.avatarURL);
+  console.log(commentedUser);
   return (
-    <div>
-      {isCurrentUserComment ? (
-        <img src={currentUser.avatarURL} alt="" />
-      ) : (
-        <img src={commentedUser?.avatarURL} alt="" />
-      )}
+    <div className="flex gap-3">
+      <div className="ml-2">
+        {isCurrentUserComment ? (
+          currentUser.avatarURL ? (
+            <img
+              src={currentUser?.avatarURL}
+              alt=""
+              className="w-8 h-8 rounded-full"
+            />
+          ) : (
+            <img
+              src="https://api-private.atlassian.com/users/6b5c1609134a5887d7f3ab1b73557664/avatar"
+              alt=""
+              className="w-8 h-8 rounded-full"
+            />
+          )
+        ) : commentedUser?.avatarURL ? (
+          <img
+            src={commentedUser?.avatarURL}
+            alt=""
+            className="w-8 h-8 rounded-full"
+          />
+        ) : (
+          <img
+            src="https://api-private.atlassian.com/users/6b5c1609134a5887d7f3ab1b73557664/avatar"
+            alt=""
+            className="w-8 h-8 rounded-full"
+          />
+        )}
+      </div>
+      <div className="bg-gray-200 px-2 py-1 w-full rounded-md">
+        <div className=" font-semibold flex gap-2">
+          {isCurrentUserComment ? (
+            <span>
+              {currentUser?.firstName} {currentUser?.lastName}
+            </span>
+          ) : commentedUser ? (
+            <span>
+              {commentedUser?.firstName} {commentedUser?.lastName}
+            </span>
+          ) : (
+            <span>Unknown</span>
+          )}
+        </div>
+
+        <>
+          <p className="text-sm">{comment?.text}</p>
+        </>
+      </div>
     </div>
   );
 };
