@@ -5,6 +5,7 @@ import { CommentItem } from "../index";
 
 const Comments = ({ post }) => {
   const { currentUser } = useAuth();
+  // console.log(post.comments)
   return (
     <div className="">
       <div className="flex items-center my-4">
@@ -32,13 +33,15 @@ const Comments = ({ post }) => {
           </button>
         </div>
       </div>
-      {post?.comments.length > 0 ? (
-        post?.comments.map((comment) => (
-          <CommentItem comment={comment} key={comment._id} />
-        ))
-      ) : (
-        <span>No comments yet</span>
-      )}
+      <div className="flex flex-col gap-2">
+        {post?.comments.length > 0 ? (
+          post?.comments.map((comment) => (
+            <CommentItem comment={comment} key={comment._id} />
+          ))
+        ) : (
+          <span>No comments yet</span>
+        )}
+      </div>
     </div>
   );
 };
