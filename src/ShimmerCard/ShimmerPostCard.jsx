@@ -1,6 +1,6 @@
 const ShimmerPostCard = () => {
   return (
-    <div>
+    <div className="w-700">
       {/* <div className="flex justify-between py-4 mt-2">
         <div className="bg-gray-300 h-6 rounded-lg w-32"></div>
         <div className="bg-gray-300 h-7 rounded-lg w-7"></div>
