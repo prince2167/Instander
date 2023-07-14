@@ -82,7 +82,7 @@ export const posts = [
         text: "The secret of life is enjoying with your friends..",
       },
     ],
-    username: "",
+    username: "jenny_anderson",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
