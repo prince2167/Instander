@@ -5,20 +5,20 @@ const getAllPostsService = async () => await axios.get("/api/posts");
 const getPostsByUserName = (username) =>
   axios.get(`/api/posts/user/${username}`);
 
-const addPost = (postData) => {
+const addPost = (postData, token) => {
   return axios.post(
     "/api/posts",
     { postData },
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 };
 
-const deletePost = async (postId) => {
+const deletePost = async (postId,token) => {
   try {
     const response = await axios.delete(`/api/posts/${postId}`, {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     });
     return response.data;
   } catch (error) {
@@ -26,30 +26,30 @@ const deletePost = async (postId) => {
   }
 };
 
-const editPost = (postData) =>
+const editPost = (postData,token) =>
   axios.post(
     `/api/posts/edit/${postData._id}`,
     { postData },
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token},
     }
   );
 
-const likePost = (postId) =>
-  axios.post(
+const likePost = async (postId, token) =>
+  await axios.post(
     `/api/posts/like/${postId}`,
     {},
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
-const dislikePost = (postId) =>
+const dislikePost = (postId, token) =>
   axios.post(
     `/api/posts/dislike/${postId}`,
     {},
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
