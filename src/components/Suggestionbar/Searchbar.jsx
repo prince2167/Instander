@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { AiOutlineSearch } from "../../asset/icons";
 import { useUser } from "../../contexts/user-context";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
   const { userState } = useUser();
   const { users } = userState;
   const [query, setQuery] = useState("");
-
+  const navigate = useNavigate();
   const searchedByQuery = users.filter(
     (user) =>
       user.username.includes(query.toLowerCase()) ||
@@ -29,6 +30,7 @@ const Searchbar = () => {
         <div className="w-full absolute top-full bg-white z-40 shadow-md">
           {searchedByQuery?.map((user) => (
             <div
+              onClick={() => navigate(`/profile/${user?.username}`)}
               key={user._id}
               className="p-2 flex gap-2 items-center cursor-pointer"
             >
