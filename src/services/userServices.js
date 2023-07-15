@@ -4,53 +4,53 @@ const getAllUsers = () => axios.get("/api/users");
 
 const getUserByUsername = (username) => axios.get(`/api/users/${username}`);
 
-const editUserData = (userData) =>
+const editUserData = (userData, token) =>
   axios.post(
     `/api/users/edit`,
     { userData },
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
-const getBookmarks = () =>
+const getBookmarks = (token) =>
   axios.get(`/api/users/bookmark`, {
-    headers: { authorization: localStorage.getItem("token") },
+    headers: { authorization: token },
   });
 
-const bookmarkPost = (postId) =>
+const bookmarkPost = (postId, token) =>
   axios.post(
     `/api/users/bookmark/${postId}`,
     {},
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
-const unBookmarkPost = (postId) =>
+const unBookmarkPost = (postId, token) =>
   axios.post(
     `/api/users/remove-bookmark/${postId}`,
     {},
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
-const followUser = (followUserId) =>
+const followUserServices = (followUserId, token) =>
   axios.post(
     `/api/users/follow/${followUserId}`,
     {},
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
-const unFollowUser = (followUserId) =>
+const unFollowUserServices = (followUserId, token) =>
   axios.post(
     `/api/users/unfollow/${followUserId}`,
     {},
     {
-      headers: { authorization: localStorage.getItem("token") },
+      headers: { authorization: token },
     }
   );
 
@@ -61,6 +61,6 @@ export {
   getBookmarks,
   bookmarkPost,
   unBookmarkPost,
-  followUser,
-  unFollowUser,
+  followUserServices,
+  unFollowUserServices,
 };
