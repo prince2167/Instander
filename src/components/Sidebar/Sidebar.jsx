@@ -8,7 +8,9 @@ import {
   CgAddR,
   BsThreeDots,
 } from "../../asset/icons";
+import { useAuth } from "../../contexts/auth-context";
 const Sidebar = () => {
+  const { currentUser } = useAuth();
   const isActiveClass = ({ isActive }) =>
     `sidebar flex items-center text-lg mt-1 py-1.5 rounded-full px-4 hover:bg-isactiveColor w-full  ${
       isActive && "bg-isactiveColor font-semibold text-orange"
@@ -37,7 +39,10 @@ const Sidebar = () => {
           Liked Post
         </NavLink>
 
-        <NavLink to="/profile" className={isActiveClass}>
+        <NavLink
+          to={`/profile/${currentUser?.username}`}
+          className={isActiveClass}
+        >
           <CgProfile size="25" className="mr-4" />
           Profile
         </NavLink>
