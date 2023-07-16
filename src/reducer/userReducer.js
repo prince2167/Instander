@@ -1,5 +1,7 @@
 export const initialUserState = {
   users: [],
+  bookmarks: [],
+  userDetails: {},
 };
 
 export const userReducer = (state, action) => {
@@ -9,6 +11,41 @@ export const userReducer = (state, action) => {
       return {
         ...state,
         users: payload,
+      };
+    }
+    case "GET_USER_DETAILS": {
+      return {
+        ...state,
+        userDetails: payload,
+      };
+    }
+    case "GET_USER_DETAILS": {
+      return {
+        ...state,
+        userDetails: payload,
+      };
+    }
+    case "GET_ALL_BOOKMARKS": {
+      return {
+        ...state,
+        bookmarks: payload,
+      };
+    }
+    case "ADD_BOOKMARK": {
+      return {
+        ...state,
+        bookmarks: payload,
+      };
+    }
+    case "UNBOOKMARK_POST": {
+      return {
+        ...state,
+        bookmarks: payload,
+      };
+    }
+    case "UPDATE_FOLLOW_USER": {
+      return {
+        ...state,
       };
     }
     default:
