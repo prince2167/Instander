@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { MdOutlineCancel, BiImageAdd, BsEmojiSmile } from "../../asset/icons";
 import EmojiPicker from "emoji-picker-react";
-const CreatePsot = () => {
+import { usePosts } from "../../contexts/post-context";
+
+const CreatePost = ({ currentUser }) => {
   const [postContent, setPostContent] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-
+  const { addUserPost } = usePosts();
+  
+ 
   const handleImageSelect = () => {
     const input = document.createElement("input");
     input.type = "file";
@@ -18,9 +22,34 @@ const CreatePsot = () => {
     input.click();
   };
 
+  const handleEmojiClick = (emojiObj) => {
+    const emoji = emojiObj.emoji;
+    const updatedContent = postContent + emoji;
+    setPostContent(updatedContent);
+    setShowEmojiPicker(false);
+  };
+
+  const postSubmitHandler = (event) => {
+    event.preventDefault();
+    const postData = {
+      content: postContent,
+      mediaURL: selectedImage,
+      userId: currentUser._id,
+    };
+
+    addUserPost(postData);
+
+    setPostContent("");
+    setSelectedImage(null);
+    setShowEmojiPicker(false);
+  };
+
   const isPostButtonDisabled = postContent.trim() === "";
   return (
-    <form className="w-full  border-gray-300  mt-5 py-4 px-6 border rounded-lg shadow-lg h-full">
+    <form
+      className="w-full  border-gray-300  mt-5 py-4 px-6 border rounded-lg shadow-lg h-full"
+      onSubmit={postSubmitHandler}
+    >
       <div className="flex gap-4">
         <img
           src="https://res.cloudinary.com/drre76xpz/image/upload/v1687251189/GettyImages-1408550650-766cd614126049f38f5bd460f823587f_ifc2t3_bgv8v9.webp"
@@ -65,7 +94,7 @@ const CreatePsot = () => {
 
             {showEmojiPicker && (
               <div className="z-10 mt-2 absolute">
-                <EmojiPicker />
+                <EmojiPicker onEmojiClick={handleEmojiClick} />
               </div>
             )}
           </div>
@@ -84,4 +113,4 @@ const CreatePsot = () => {
   );
 };
 
-export default CreatePsot;
+export default CreatePost;
