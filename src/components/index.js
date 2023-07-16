@@ -10,6 +10,11 @@ import PostCard from "./Posts/PostCard";
 import Comments from "./Comments/Comments";
 import CommentItem from "./Comments/CommentItem";
 import Filter from "./Filter/Filter";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import Modal from "./Modal/Modal";
+import EditPostForm from "./Posts/EditPostForm";
+import EditUserDetails from "./ProfileDetails/EditUserDetails";
+import ProfileDetails from "./ProfileDetails/ProfileDetails";
 export {
   Navbar,
   Sidebar,
@@ -23,4 +28,9 @@ export {
   Comments,
   CommentItem,
   Filter,
+  Modal,
+  EditPostForm,
+  EditUserDetails,
+  ProfileDetails,
+  ProtectedRoute,
 };
