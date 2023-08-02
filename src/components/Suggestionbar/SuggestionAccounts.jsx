@@ -20,7 +20,7 @@ const SuggestionAccountsBar = () => {
 
   if (isLoading) return <ShimerUserCard />;
   return (
-    <div className="w-1/3">
+    <div className="  hidden xl:flex xl:flex-col w-1/3 sticky top-24">
       <Searchbar />
       <div className=" mx-10 my-5 flex flex-col gap-4 border border-gray-300 shadow-lg py-2 rounded-md  ">
         <h1 className="text-md ml-2  font-semibold">Who to follow?</h1>
