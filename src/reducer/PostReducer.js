@@ -18,6 +18,24 @@ export const postReducer = (state, action) => {
         posts: payload,
       };
     }
+    case "ADD_NEW_COMMENT": {
+      return {
+        ...state,
+        posts: payload,
+      };
+    }
+    case "EDITED_COMMENT": {
+      return {
+        ...state,
+        posts: payload,
+      };
+    }
+    case "DELETE_COMMENT": {
+      return {
+        ...state,
+        posts: payload,
+      };
+    }
     case "EDITED_POSTS": {
       return {
         ...state,
