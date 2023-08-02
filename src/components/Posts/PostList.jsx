@@ -6,7 +6,7 @@ const PostList = ({ posts }) => {
   const { sortBy } = usePosts();
   const sortedPosts = getSortedPosts(posts, sortBy);
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 relative">
       {sortedPosts?.length &&
         sortedPosts?.map((post) => <PostCard post={post} key={post.id} />)}
     </div>
