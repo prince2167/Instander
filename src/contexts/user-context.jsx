@@ -27,7 +27,7 @@ const UserProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
   const [bookmarkIsLoading, setbookmarkIsLoading] = useState(false);
-
+  const { users } = userState;
   const fetchUserByUsername = async (username) => {
     setUserProfileLoading(true);
     try {
@@ -57,8 +57,6 @@ const UserProvider = ({ children }) => {
     } catch (error) {
       toast.error("Something went wrong");
     }
-    const data = await editUserData(userData, token);
-    
   };
 
   const followUserHandler = async (followUserId) => {
@@ -67,15 +65,19 @@ const UserProvider = ({ children }) => {
         status,
         data: { user, followUser },
       } = await followUserServices(followUserId, token);
-
       if (status === 200 || status === 201) {
+        userDispatch({
+          type: "UPDATE_FOLLOW_USER",
+          payload: [followUser],
+        });
         setCurrentUser(user);
-        toast.success(`Followed @${followUser.username}`);
+        toast.success(`Followed @${followUser?.username}`);
       }
     } catch (error) {
       toast.error("Something went wrong");
     }
   };
+
   const unFollowUserHandler = async (followUserId) => {
     try {
       const {
@@ -83,6 +85,10 @@ const UserProvider = ({ children }) => {
         data: { user, followUser },
       } = await unFollowUserServices(followUserId, token);
       if (status === 200 || status === 201) {
+        userDispatch({
+          type: "UPDATE_FOLLOW_USER",
+          payload: [followUser],
+        });
         setCurrentUser(user);
         toast.success(`Unfollowed @${followUser.username}`);
       }
