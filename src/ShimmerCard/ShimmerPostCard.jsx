@@ -1,10 +1,7 @@
 const ShimmerPostCard = () => {
   return (
     <div className="w-700">
-      {/* <div className="flex justify-between py-4 mt-2">
-        <div className="bg-gray-300 h-6 rounded-lg w-32"></div>
-        <div className="bg-gray-300 h-7 rounded-lg w-7"></div>
-      </div> */}
+      
       {[...Array(3)].map((_, index) => (
         <div
           className="border border-gray-300 bg-white px-6 py-4 rounded-lg shadow-lg w-full mt-5 flex h-fit flex-col animate-pulse"
