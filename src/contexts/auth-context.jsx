@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { loginService, signupService } from "../services/authServices";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import axios from "axios";
+
 
 const AuthContext = createContext();
 
@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
       username: "me_princesingh",
       password: "prince@2167",
     };
-    const response = await axios.post("/api/auth/login", userData);
+    const response = await loginService(userData);
     const {
       status,
       data: { encodedToken, foundUser },
@@ -65,12 +65,14 @@ const AuthProvider = ({ children }) => {
 
   const signupHandler = async (formData) => {
     setIsLoading(true);
+
     try {
       const response = await signupService(formData);
       const {
         status,
-        data: { createdUser, encodedToken },
+        data: { encodedToken, createdUser },
       } = response;
+
       if (status === 200 || status === 201) {
         localStorage.setItem(
           "loginDetails",
@@ -89,6 +91,13 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem("loginDetails");
+    setToken(null);
+    setCurrentUser(null);
+    toast.success("Logged out successfully!");
+    navigate("/login");
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -99,6 +108,7 @@ const AuthProvider = ({ children }) => {
         signupHandler,
         loginHandler,
         loginAsGuestHandler,
+        logoutHandler,
       }}
     >
       {children}
