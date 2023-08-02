@@ -1,7 +1,11 @@
 import { initialState, postReducer } from "../reducer/PostReducer";
 import { useAuth } from "./auth-context";
 import { toast } from "react-hot-toast";
-import { addComment } from "../services/commentServices";
+import {
+  addComment,
+  editComment,
+  deleteComment,
+} from "../services/commentServices";
 import {
   addPost,
   getAllPostsService,
@@ -106,10 +110,50 @@ const PostProvider = ({ children }) => {
   };
 
   const addPostCommentHandler = async ({ postId, commentData }) => {
-    const data = await addComment(postId, commentData, token);
-    console.log(data);
+    try {
+      const {
+        status,
+        data: { posts },
+      } = await addComment(postId, commentData, token);
+      if (status === 201) {
+        dispatch({ type: "ADD_NEW_COMMENT", payload: posts });
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong!");
+    }
   };
 
+  const editUserComment = async ({ postId, commentId, commentData }) => {
+    try {
+      const {
+        status,
+        data: { posts },
+      } = await editComment(postId, commentId, commentData, token);
+      if (status === 200 || status === 201) {
+        dispatch({ type: "EDITED_COMMENT", payload: posts });
+        toast.success("Post edited");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+
+  const deleteUserComment = async ({ postId, commentId }) => {
+    try {
+      const {
+        status,
+        data: { posts },
+      } = await deleteComment(postId, commentId, token);
+
+      if (status === 200 || status === 201) {
+        dispatch({ type: "DELETE_COMMENT", payload: posts });
+        toast.success("Comment deleted");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
   const getPosts = async () => {
     setIsLoading(true);
     try {
@@ -140,6 +184,8 @@ const PostProvider = ({ children }) => {
         likePostHandler,
         dislikePostHandler,
         addPostCommentHandler,
+        editUserComment,
+        deleteUserComment,
         sortBy,
         setSortBy,
         addUserPost,
