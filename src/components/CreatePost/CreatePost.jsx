@@ -32,6 +32,7 @@ const CreatePost = ({ currentUser }) => {
   const postSubmitHandler = (event) => {
     event.preventDefault();
     const postData = {
+      comments:[],
       content: postContent,
       mediaURL: selectedImage,
       userId: currentUser._id,
