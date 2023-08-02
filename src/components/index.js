@@ -15,6 +15,7 @@ import Modal from "./Modal/Modal";
 import EditPostForm from "./Posts/EditPostForm";
 import EditUserDetails from "./ProfileDetails/EditUserDetails";
 import ProfileDetails from "./ProfileDetails/ProfileDetails";
+import CreatePostModal from "./CreatePost/CreatePostModal";
 export {
   Navbar,
   Sidebar,
@@ -33,4 +34,5 @@ export {
   EditUserDetails,
   ProfileDetails,
   ProtectedRoute,
+  CreatePostModal,
 };
