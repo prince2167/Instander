@@ -1,12 +1,9 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../contexts/auth-context";
 
-const ProtectedRoute = ({ children }) => {
-  const { currentUser } = useAuth();
-  if (!currentUser) {
-    return <Navigate to="/login" />;
-  }
-  return children;
+const ProtectedRoute = () => {
+  const { token } = useAuth();
+  return token ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;
