@@ -14,7 +14,7 @@ import { usePosts } from "../../contexts/post-context";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useNavigate } from "react-router-dom";
 const PostCard = ({ post }) => {
-  const { _id, content, mediaURL, likes, comments, username } = post;
+  const { _id, content, mediaURL, likes } = post;
   const { likePostHandler, dislikePostHandler, deleteUserPost } = usePosts();
   const { userState, addBookmarkHandler, unBookmarkHandler } = useUser();
   const { users, bookmarks } = userState;
@@ -97,20 +97,29 @@ const PostCard = ({ post }) => {
               {isOwnedByUser && (
                 <SlOptionsVertical
                   className="cursor-pointer"
-                  onClick={() => setShowOption(!showOption)}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setShowOption(!showOption);
+                  }}
                 />
               )}
               {showOption && (
                 <div className=" absolute right-4  mt-2 flex flex-col items-center bg-white font-semibold border shadow rounded-lg p-2">
                   <div
                     className="cursor-pointer  py-1 px-4 rounded-lg hover:bg-isactiveColor "
-                    onClick={() => setShowEditModal(true)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setShowEditModal(true);
+                    }}
                   >
                     Edit
                   </div>
                   <div
                     className="cursor-pointer  py-1 px-4 rounded-lg hover:bg-isactiveColor "
-                    onClick={() => deleteUserPost(_id)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      deleteUserPost(_id);
+                    }}
                   >
                     Delete
                   </div>
