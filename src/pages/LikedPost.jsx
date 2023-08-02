@@ -14,7 +14,7 @@ const LikedPost = () => {
 
   if (isLoading) return <ShimmerPostCard />;
   return (
-    <div className="w-700 mt-5">
+    <div className="xl:w-700  w-full px-4 py-2 relative mb-8 mt-5">
       {likedPosts?.length > 0 ? (
         <div className="flex flex-wrap gap-4">
           {likedPosts.map((post) => (
