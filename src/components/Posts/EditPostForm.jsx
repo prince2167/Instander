@@ -43,7 +43,7 @@ const EditPostForm = ({ post, setShowModal }) => {
   };
 
   return (
-    <div className="w-[26rem]  p-2 border rounded-lg ">
+    <div className="sm:w-[26rem] w-[18rem]  p-2 border rounded-lg ">
       <p className="text-2xl font-semibold text-center mb-2">Edit Post </p>
 
       <form onSubmit={editPostHandler}>
