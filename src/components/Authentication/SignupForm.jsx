@@ -15,14 +15,14 @@ const SignupForm = () => {
   });
   const signupSubmitHandler = (event) => {
     event.preventDefault();
-    if (userDetails.password === userDetails.confirmPassword) {
-      signupHandler(userDetails);
+    if (userDetails.password !== userDetails.confirmPassword) {
+      toast.error("Your password and confirmation password do not match.");
     } else {
-      toast.error("Please fill this form correctly");
+      signupHandler(userDetails);
     }
   };
   return (
-    <div className="max-w-md w-full p-6 shadow-xl hover:shadow-2xl border-2 sm:0">
+    <div className="max-w-md w-full p-6 shadow-xl hover:shadow-2xl border-2 m-2 sm:0">
       <div className="flex items-center justify-center gap-4 mb-4">
         <img
           src="https://res.cloudinary.com/drre76xpz/image/upload/v1687520238/1005491_qrzn8x.png"
@@ -52,7 +52,7 @@ const SignupForm = () => {
                   firstName: event.target.value,
                 })
               }
-              className="block w-full p-2 sm:text-sm border border-black
+              className="block w-full  p-2 sm:text-sm border border-black
              outline-orange rounded-md"
             />
           </div>
