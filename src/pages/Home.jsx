@@ -16,7 +16,7 @@ const Home = () => {
 
   if (isLoading) return <ShimmerPostCard />;
   return (
-    <div className="w-700">
+    <div className="xl:w-700  w-full px-4 py-2 relative mb-8 ">
       <CreatePost currentUser={currentUser} />
       <Filter />
       <PostList posts={homePosts} />
