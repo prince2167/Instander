@@ -10,7 +10,7 @@ const ProfileDetails = ({ user, totalPost, isEdit }) => {
   const userAlreadyFollowing = user?.followers?.some(
     (user) => user.username === currentUser?.username
   );
-
+ 
   return (
     <div className="bg-white px-6 py-4 gap-4 border rounded-lg shadow-lg flex   h-fit sm:gap-6 mb-2">
       {user.avatarURL ? (
