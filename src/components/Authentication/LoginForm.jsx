@@ -26,7 +26,7 @@ const LoginForm = () => {
     }
   };
   return (
-    <div className="max-w-md w-full p-6 shadow-xl hover:shadow-2xl border-2 sm:0 ">
+    <div className="max-w-md w-full  p-6 shadow-xl hover:shadow-2xl mx-2 border-2  sm:0 ">
       <div className="flex items-center justify-center gap-4 mb-4">
         <img
           src="https://res.cloudinary.com/drre76xpz/image/upload/v1687520238/1005491_qrzn8x.png"
