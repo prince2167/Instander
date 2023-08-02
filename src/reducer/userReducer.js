@@ -46,6 +46,10 @@ export const userReducer = (state, action) => {
     case "UPDATE_FOLLOW_USER": {
       return {
         ...state,
+        users: state.users.map((user) => {
+          const updatedUser = payload?.find(({ _id }) => _id === user._id);
+          return updatedUser ? updatedUser : user;
+        }),
       };
     }
     default:
