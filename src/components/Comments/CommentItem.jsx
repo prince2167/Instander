@@ -1,8 +1,15 @@
-import React from "react";
+import { useRef, useState } from "react";
+import { SlOptionsVertical } from "../../asset/icons";
 import { useUser } from "../../contexts/user-context";
 import { useAuth } from "../../contexts/auth-context";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({
+  comment,
+  handleEditComment,
+  deleteUserCommentHandler,
+}) => {
+  const [showCommentOptions, setShowCommentOptions] = useState(false);
   const { currentUser } = useAuth();
   const { userState } = useUser();
   const { users } = userState;
@@ -12,7 +19,10 @@ const CommentItem = ({ comment }) => {
     (user) => user.username === comment.username
   );
 
-  console.log(commentedUser);
+  const clickRef = useRef();
+  useClickOutside(clickRef, () => {
+    setShowCommentOptions(false);
+  });
   return (
     <div className="flex gap-3">
       <div className="ml-2">
@@ -44,19 +54,51 @@ const CommentItem = ({ comment }) => {
           />
         )}
       </div>
-      <div className="bg-gray-200 px-2 py-1 w-full rounded-md">
-        <div className=" font-semibold flex gap-2">
-          {isCurrentUserComment ? (
-            <span>
-              {currentUser?.firstName} {currentUser?.lastName}
-            </span>
-          ) : commentedUser ? (
-            <span>
-              {commentedUser?.firstName} {commentedUser?.lastName}
-            </span>
-          ) : (
-            <span>Unknown</span>
-          )}
+
+      <div className="bg-gray-200 px-2 py-2 w-full rounded-md">
+        <div className="flex justify-between items-center">
+          <div className=" font-semibold flex gap-2">
+            {isCurrentUserComment ? (
+              <span>
+                {currentUser?.firstName} {currentUser?.lastName}
+              </span>
+            ) : commentedUser ? (
+              <span>
+                {commentedUser?.firstName} {commentedUser?.lastName}
+              </span>
+            ) : (
+              <span>Unknown</span>
+            )}
+          </div>
+
+          <div className="relative" ref={clickRef}>
+            {isCurrentUserComment && (
+              <button
+                onClick={() => setShowCommentOptions(!showCommentOptions)}
+              >
+                <SlOptionsVertical className="cursor-pointer" />
+              </button>
+            )}
+            {showCommentOptions && (
+              <div className="absolute right-2   flex flex-col items-center bg-white font-semibold border shadow rounded-lg p-2">
+                <div
+                  className="cursor-pointer  py-1 px-4 rounded-lg hover:bg-isactiveColor "
+                  onClick={() => {
+                    setShowCommentOptions(false);
+                    handleEditComment(comment);
+                  }}
+                >
+                  Edit
+                </div>
+                <div
+                  className="cursor-pointer  py-1 px-4 rounded-lg hover:bg-isactiveColor "
+                  onClick={() => deleteUserCommentHandler(comment)}
+                >
+                  Delete
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <>
