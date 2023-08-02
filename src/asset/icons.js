@@ -17,6 +17,7 @@ import { GoComment } from "react-icons/go";
 import { MdOutlineCancel, MdSend, MdOutlineTune } from "react-icons/md";
 import { BiImageAdd } from "react-icons/bi";
 import { SlOptionsVertical } from "react-icons/sl";
+import { FiLogOut } from "react-icons/fi";
 
 export {
   AiOutlineHome,
@@ -37,4 +38,5 @@ export {
   AiFillLike,
   MdSend,
   MdOutlineTune,
+  FiLogOut,
 };
