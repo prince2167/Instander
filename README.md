@@ -47,5 +47,5 @@ Start the server
 
 ## Viewing the Website on 💻 and 📱
 
-Visit the live demo link [Clothify](https://prince-instander.vercel.app/).
+Visit the live demo link [Instander](https://prince-instander.vercel.app/).
 
