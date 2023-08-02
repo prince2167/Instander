@@ -47,5 +47,9 @@ Start the server
 
 ## Viewing the Website on 💻 and 📱
 
+
+https://github.com/prince2167/Instander/assets/109654181/040fb95c-79c4-47d5-9562-1a4b0c6e45cc
+
+
 Visit the live demo link [Instander](https://prince-instander.vercel.app/).
 
