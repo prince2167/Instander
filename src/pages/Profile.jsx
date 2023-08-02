@@ -4,10 +4,11 @@ import { usePosts } from "../contexts/post-context";
 import { useUser } from "../contexts/user-context";
 import { PostCard, ProfileDetails } from "../components/index";
 import { useAuth } from "../contexts/auth-context";
+import { ShimmerPostCard } from "../ShimmerCard/ShimmerPostCard";
 const Profile = () => {
   const { currentUser } = useAuth();
   const { fetchUserByUsername, userProfileLoading, userState } = useUser();
-  const { userDetails } = userState;
+  const { users } = userState;
 
   const {
     state: { posts },
@@ -17,14 +18,17 @@ const Profile = () => {
   const userPosts = posts?.filter((post) => post.username === username);
   const isEdit = currentUser?.username === username;
 
+  // get user by params
+  const userDetails = users.find((user) => user.username === username);
+
   useEffect(() => {
     fetchUserByUsername(username);
     window.scroll({ top: 0, behavior: "smooth" });
   }, [username, currentUser]);
 
-  if (userProfileLoading) return null;
+  if (userProfileLoading) return <ShimmerPostCard />;
   return (
-    <div className="w-700 mt-5">
+    <div className="xl:w-700  w-full px-4 py-2 relative mb-8 mt-5">
       <>
         {userDetails && (
           <ProfileDetails
